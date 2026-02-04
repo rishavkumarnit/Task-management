@@ -1,17 +1,21 @@
 "use client";
 
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { useRouter } from "next/navigation";
 import { Data } from "../context/UserContext";
 
 const Profile = () => {
+  const [storedUser, setStoredUser] = useState<any>(null);
   const router = useRouter();
   useEffect(() => {
     const user = localStorage.getItem("user");
     if (!user) {
       router.push("/");
+      return;
     }
+    const parsed = JSON.parse(user);
+    setStoredUser(parsed);
   }, []);
   const context = useContext(Data);
 
@@ -20,11 +24,11 @@ const Profile = () => {
   }
 
   const { setUser } = context;
-  const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
-  if (!storedUser) {
-    router.push("/");
-    return;
-  }
+  // const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
+  // if (!storedUser) {
+  //   router.push("/");
+  //   return;
+  // }
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -47,7 +51,7 @@ const Profile = () => {
             <label className="text-sm text-gray-600">Email</label>
             <input
               name="email"
-              value={storedUser.email}
+              value={storedUser?.email || ""}
               readOnly
               className="w-full px-4 py-2 border border-gray-200 bg-gray-100 rounded-lg text-black/50"
             />
