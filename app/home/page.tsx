@@ -234,7 +234,7 @@ export default function Home() {
         >
           Save
         </button>
-        <h2 className="mt-8 text-center font-semibold">Your Tasks</h2>
+        <h2 className="mt-2 text-center font-semibold">Your Tasks</h2>
         <div className="my-8 flex  justify-center items-center gap-2">
           <input
             type="text"
@@ -259,7 +259,7 @@ export default function Home() {
             />
           </button>
         </div>
-        <div className="mt-4 space-y-3">
+        <div className="mt-4 space-y-3 h-90 overflow-y-auto">
           {filteredTasks.map((item) => {
             return (
               <div

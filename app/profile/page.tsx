@@ -24,11 +24,6 @@ const Profile = () => {
   }
 
   const { setUser } = context;
-  // const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
-  // if (!storedUser) {
-  //   router.push("/");
-  //   return;
-  // }
 
   const handleLogout = () => {
     localStorage.removeItem("user");
